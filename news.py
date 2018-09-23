@@ -2,11 +2,11 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup as bss
 from gtts import gTTS
 import os
-
+import platform
 def thanthi():
     url = 'https://www.dailythanthi.com/'
-    req = urlopen(url).read()
-    soup = bss(req, 'lxml')
+    requesting = urlopen(url).read()
+    soup = bss(requesting, 'html.parser')
     hline = 'வணக்கம் செய்திகள் வசிப்பது உங்கள் பைதான்;'
     ls = []
     banner ='''
@@ -21,7 +21,7 @@ def thanthi():
         ls.append(tmp.text.strip()+';')
 
 
-    pp = ls[1:8]
+    items = ls[1:8]
     nline = '\n\n'
     one = '\n'
     des = '='*120
@@ -30,12 +30,22 @@ def thanthi():
     creat = 'Created by: நரேன் '
     print(nline,des,one,banner,one,tab,creat,one,tab,under)
 
-    for val in pp:
+    for val in items:
         print('\n',"{} {}".format('[*]', val))
+    
+    
+    if platform.system() == 'Linux':
+        changer = os.chdir('/home')
+        show = os.listdir(changer)[0]
+        
+        again = os.chdir("{}{}".format(show,"/Desktop"))
 
-    os.chdir('E:')
-    sam = ','.join(pp)
+    print(os.getcwd())
+
+    
+    sam = ','.join(items)
     spk = gTTS(hline+sam, lang='ta')
     spk.save('tamil_news.mp3')
-    
+    print("{_File_Created_}")
 thanthi()
+
