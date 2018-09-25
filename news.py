@@ -1,3 +1,5 @@
+
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bss
 from gtts import gTTS
@@ -36,10 +38,13 @@ def thanthi():
     
     if platform.system() == 'Linux':
         changer = os.chdir('/home')
-        show = os.listdir(changer)[0]
-        
-        again = os.chdir("{}{}".format(show,"/Desktop"))
+        present_user = os.environ['USER']
+        again = os.chdir("{}{}".format(present_user,"/Desktop"))
 
+    elif platfom.system() == "Windows":
+        os.chdir("e:")
+        
+    
     print(os.getcwd())
 
     
@@ -48,4 +53,3 @@ def thanthi():
     spk.save('tamil_news.mp3')
     print("{_File_Created_}")
 thanthi()
-
