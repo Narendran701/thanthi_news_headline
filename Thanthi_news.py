@@ -27,7 +27,7 @@ def thanthi():
     under = '='*18
     tab = '\t'*8
     creat = 'Created by: நரேன் '
-    print(nline,'\t'*8,banner,one,tab,creat,one,tab,under)
+    print(nline,banner,one,tab,creat,one,tab,under)
 
     for val in items:
         print('\n',"{} {}".format('[+]', val))
