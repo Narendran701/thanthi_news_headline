@@ -1,14 +1,12 @@
-
-
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bss
 from gtts import gTTS
-import os
-import platform
+import os, platform,lxml
+
 def thanthi():
     url = 'https://www.dailythanthi.com/'
     requesting = urlopen(url).read()
-    soup = bss(requesting, 'html.parser')
+    soup = bss(requesting, 'lxml')
     hline = 'வணக்கம் செய்திகள் வசிப்பது உங்கள் பைதான்;'
     ls = []
     banner ='''
@@ -22,7 +20,6 @@ def thanthi():
     for tmp in soup.find_all('h4'):
         ls.append(tmp.text.strip()+';')
 
-
     items = ls[1:8]
     nline = '\n\n'
     one = '\n'
@@ -30,12 +27,11 @@ def thanthi():
     under = '='*18
     tab = '\t'*8
     creat = 'Created by: நரேன் '
-    print(nline,des,one,banner,one,tab,creat,one,tab,under)
+    print(nline,'\t'*8,banner,one,tab,creat,one,tab,under)
 
     for val in items:
-        print('\n',"{} {}".format('[*]', val))
-    
-    
+        print('\n',"{} {}".format('[+]', val))
+       
     if platform.system() == 'Linux':
         changer = os.chdir('/home')
         present_user = os.environ['USER']
@@ -43,13 +39,9 @@ def thanthi():
 
     elif platfom.system() == "Windows":
         os.chdir("e:")
-        
-    
-    print(os.getcwd())
-
-    
+          
     sam = ','.join(items)
     spk = gTTS(hline+sam, lang='ta')
     spk.save('tamil_news.mp3')
-    print("{_File_Created_}")
+    print(nline,"\t","!-AUDIO_Created_ON(Location) : > ",'[ {} ]'.format(os.getcwd()))
 thanthi()
