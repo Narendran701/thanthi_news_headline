@@ -1,13 +1,13 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bss
 from gtts import gTTS
-import os, platform,lxml
+import os,platform,lxml
 
 def thanthi():
     url = 'https://www.dailythanthi.com/'
     requesting = urlopen(url).read()
     soup = bss(requesting, 'lxml')
-    hline = 'வணக்கம் செய்திகள் வசிப்பது உங்கள் பைதான;'
+    hline = 'வணக்கம் செய்திகள் வசிப்பது உங்கள் python;'
     ls = []
     banner ='''
   _____ _                 _   _     _   _   _                   
