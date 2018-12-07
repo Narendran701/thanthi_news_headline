@@ -26,7 +26,7 @@ def thanthi():
     creat = 'Created by: நரேன் '
     print(nline,banner,one,tab,creat,one,tab,under)
     for val in items:print('\n',"{} {}".format('[+]', val))
-    os.getcwd()
+    os.chdir(os.getcwd())
     sam = ','.join(items)
     spk = gTTS(hline+sam, lang='ta')
     spk.save('tamil_news.mp3')
