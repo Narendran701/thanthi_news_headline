@@ -40,6 +40,7 @@ class Finder():
     #     # print(self.box)
 
     def res_downloader(self):
+        self.page_name = str("{}/{}.html".format(os.getcwd(),self.lang))
         for tm in self.box:
             #print(tm)
             agent = {"User-Agent":"Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"}
@@ -67,10 +68,15 @@ class Finder():
                 metool.decompose()
                 
             except AttributeError:None
-            with open("{}/{}.html".format(os.getcwd(),self.lang), "a")as f:
+
+
+            with open(self.page_name, "a")as f:
                 f.write(str(bss.get_text))
         print("__Almost__")
-        pdfkit.from_file("{}/{}.html".format(os.getcwd(),self.lang),"{}.pdf".format(self.lang))
+        pdfkit.from_file(self.page_name,"{}.pdf".format(self.lang))
+        try:
+            os.remove(self.page_name)
+        except Expection:None
         print("__Done__")
 obj=Finder()
 
